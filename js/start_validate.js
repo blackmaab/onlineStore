@@ -13,7 +13,7 @@ jQuery.validarCampos=function(nameForm){
             $(this).addClass('errorText');
             contadorErrores++;
         }else{
-            $(this).addClass('defaultText');		
+        //$(this).addClass('defaultText');		
         }
     });
 		
@@ -26,7 +26,7 @@ jQuery.validarCampos=function(nameForm){
             $(this).addClass('errorText');
             contadorErrores++;
         }else{
-            $(this).addClass('defaultText');
+        //$(this).addClass('defaultText');
         }
     });
 		
@@ -39,7 +39,7 @@ jQuery.validarCampos=function(nameForm){
             $(this).addClass('errorTextArea');
             contadorErrores++;
         }else{
-            $(this).addClass('contact_textarea');
+        //$(this).addClass('contact_textarea');
         }
     });
 		
@@ -52,7 +52,7 @@ jQuery.validarCampos=function(nameForm){
             $(this).addClass('errorSelect');
             contadorErrores++;
         }else{
-            $(this).addClass('defaultSelect');
+        //$(this).addClass('defaultSelect');
         }
     });
 		
@@ -167,7 +167,7 @@ jQuery.mensajeInformativo=function(mensaje,tipoError){
     switch (tipoError){
         case 'e':
             titl='Error';
-            image='images/advertencia.png';
+            image='images/notificacion/advertencia.png';
             w=255;
             h=100;		
             break;
@@ -175,14 +175,14 @@ jQuery.mensajeInformativo=function(mensaje,tipoError){
 		
         case 'i':
             titl='Éxito';
-            image='images/exito.png';
+            image='images/notificacion/exito.png';
             w=270;
             h=100;
             break;
 		
         case 'loginAdmin':
             titl='Éxito';
-            image='images/exito.png';
+            image='images/notificacion/exito.png';
             w=270;
             h=100;
             funcion=function(){
@@ -223,36 +223,42 @@ jQuery.mensajeInformativo=function(mensaje,tipoError){
             break;
             ;
     }
-	
-    $('#divMensaje')
-    .html('<img src="'+image+'" class="imgInformacion"/><div class="mensInformation">'+mensaje+'</div>')		
-    //.addClass('mensInformation')
-    .dialog({
+
+    $.gritter.add({
         title:titl,
-        draggable:false,
-        width:w,
-        height:h,
-        resizable:false,
-        show:'bounce',
-        modal:false, //pantalla congelada
-        hide: {
-            effect: 'explode', 
-            direction: 'down',
-            speed:'slow'
-        } ,
-        position:['right','top'],
-        /*buttons:{
-            "Ok":function(){
-                $(this).dialog("close");
-                funcion();
-            }
-        },*/
-        close:function(){
-            funcion();
-        }
+        text:mensaje,
+        image:image
     });
-        
-    setTimeout('$("#divMensaje").dialog("close");', 5000);
+            
+//    $('#divMensaje')
+//    .html('<img src="'+image+'" class="imgInformacion"/><div class="mensInformation">'+mensaje+'</div>')		
+//    //.addClass('mensInformation')
+//    .dialog({
+//        title:titl,
+//        draggable:false,
+//        width:w,
+//        height:h,
+//        resizable:false,
+//        show:'bounce',
+//        modal:false, //pantalla congelada
+//        hide: {
+//            effect: 'explode', 
+//            direction: 'down',
+//            speed:'slow'
+//        } ,
+//        position:['right','top'],
+//        /*buttons:{
+//            "Ok":function(){
+//                $(this).dialog("close");
+//                funcion();
+//            }
+//        },*/
+//        close:function(){
+//            funcion();
+//        }
+//    });
+//        
+//    setTimeout('$("#divMensaje").dialog("close");', 5000);
         
 }
 

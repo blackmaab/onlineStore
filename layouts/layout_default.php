@@ -27,7 +27,8 @@
 
                 <!-- Header -->
                 <div id="header">
-                    <h1 id="logo"><a href="#">Urgan Gear</a></h1>
+                    <div id="logos"><img src="images/logo.png"/></div>
+                    <!--<h1 id="logo"><a href="#">Computer Innovation</a></h1>-->
                     <div id="navigation">
                         <ul>
                             <li><a href="#">Inicio</a></li>

@@ -13,6 +13,11 @@ $conf['home'] = array(
     'layout' => LAYOUT_DEFECTO
 );
 
+/*MODULO DEL ADMINISTRADOR*/
+$conf['homeAdmin'] = array(
+    'archivo' => 'pages/defaultAdmin.php',
+    'layout' => LAYOUT_DEFECTO
+);
 
 ?>
 

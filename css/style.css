@@ -24,9 +24,9 @@ a:hover { color:#333; }
 .ac { text-align: center; }
 
 h3 { font-size:15px; line-height:18px; color:#bcbcbc; text-transform: uppercase; }
-
+#logos {margin-top:20px ;position:absolute ;display:block ;height:61px; z-index: 300;}
 h1#logo { font-size:0; line-height:0; width:248px; height:61px; float:left; }
-h1#logo a{ display:block; height:61px; text-indent: -4000px; background:url(../images/logo.gif); }
+h1#logo a{ display:block; height:61px; text-indent: -4000px; background:url(../images/logo.png); }
 
 #navigation { float:right; white-space:nowrap; }
 #navigation ul{ list-style-type: none; padding-top:30px;}
@@ -111,3 +111,28 @@ h1#logo a{ display:block; height:61px; text-indent: -4000px; background:url(../i
 .tab-content { display:none;}
 
 .tabbed { min-height:420px;}
+
+
+/*******MENSAJES DE ERROR***********/
+.errorText, .errorTextArea{
+    border: #636161 solid 1px;
+    background: #FAC7C7;
+    text-align: center;
+}
+
+.errorSelect{
+    border: #636161 solid 1px;
+    background: #FAC7C7;
+    width: 145px;
+}
+
+.defaultSelect{
+    border: #2B546E solid 1px;
+    color: #0969A9;
+    width: 145px;
+}
+.defaultText{
+    border: #2B546E solid 1px;
+    color: #0969A9;
+    text-align: center;
+}
