@@ -33,13 +33,20 @@
                         <div class="image">
                             <a href="#"><img src="images/accesorios/adaptadorAudio.jpg" alt="" height="83"/></a>
                         </div>
-                         <p>
+                        <p>
                             Producto: <span>Adaptador de Audio 3-D</span><br />                                                        
                             Marca: <span>Manhattan</span><br />
                             Detalle: &nbsp;<a href="#">Ver m&aacute;s</a>       
                         </p>
                         <p class="price">Precio:&nbsp;&nbsp;<strong>$ 7.00</strong></p>
-                        <img src="images/car.png" title="Comprar" alt="Comprar" width="32" height="32" align="right"/> 
+                        <table>
+                            <tr>
+                                <td>Cantidad a Comprar:</td>
+                                <td><input type="text" name="txtCantidad" id="txtCantidad" size="1"></td>
+                                <td><img src="images/car.png" title="Comprar" alt="Comprar" width="32" height="32" align="right" id="btnCar"/> </td>
+                            </tr>                            
+                        </table>
+
                     </li>
                     <li>
                         <div class="image">
@@ -57,7 +64,7 @@
                         <div class="image">
                             <a href="#"><img src="images/accesorios/camaraWeb.jpg" alt="" height="83"/></a>
                         </div>
-                        
+
                         <p>
                             Producto: <span>Cámara Web de Alta</span><br />
                             Marca: <span>Manhatan</span><br />
@@ -85,19 +92,19 @@
         <!-- End Primer Tab Content -->
 
         <!-- Segundo Tab Content -->
-       
+
         <!-- End Segundo Tab Content -->
 
         <!-- Tercer Tab Content -->
-       
+
         <!-- End Tercer Tab Content -->
-        
+
         <!--Cuarto Tab Content-->
-        
+
         <!--End Cuarto Tab Content-->
-        
+
         <!--Quinto Tab Content-->
-       
+
         <!--End Quinto Tab Content-->
 
     </div>
@@ -106,18 +113,18 @@
     <div class="brands">
         <h3>Marcas</h3>
         <div class="logos" align="center">
-            <a href="#"><img src="images/wd.jpg" alt="" /></a>           
-            <a href="#"><img src="images/asus.jpg" alt="" /></a>                        
-            <a href="#"><img src="images/kingston.jpg" alt="" /></a>
-            <a href="#"><img src="images/markvision.jpg" alt="" /></a>            
+            <a href="#"><img src="images/marcas/wd.jpg" alt="" /></a>           
+            <a href="#"><img src="images/marcas/asus.jpg" alt="" /></a>                        
+            <a href="#"><img src="images/marcas/kingston.jpg" alt="" /></a>
+            <a href="#"><img src="images/marcas/markvision.jpg" alt="" /></a>            
             <hr>
-            <a href="#"><img src="images/intel.jpg" alt="" /></a>
-            <a href="#"><img src="images/nvidia.jpg" alt="" /></a>
-            <a href="#"><img src="images/pcchips.jpg" alt="" /></a>
-            <a href="#"><img src="images/toshiba.jpg" alt="" /></a>            
-            <a href="#"><img src="images/ati.jpg" alt="" /></a>
-            <a href="#"><img src="images/biostar.jpg" alt="" /></a>
-            
+            <a href="#"><img src="images/marcas/intel.jpg" alt="" /></a>
+            <a href="#"><img src="images/marcas/nvidia.jpg" alt="" /></a>
+            <a href="#"><img src="images/marcas/pcchips.jpg" alt="" /></a>
+            <a href="#"><img src="images/marcas/toshiba.jpg" alt="" /></a>            
+            <a href="#"><img src="images/marcas/ati.jpg" alt="" /></a>
+            <a href="#"><img src="images/marcas/biostar.jpg" alt="" /></a>
+
         </div>
     </div>
     <!-- End Brands -->

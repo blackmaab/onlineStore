@@ -4,6 +4,8 @@
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <title>Computer Innovation</title>
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/basic.css" type="text/css" media="all" />
+         <link rel="stylesheet" href="css/jquery.gritter.css" type="text/css" media="all" />
         <!--[if lte IE 6]>
                 <style type="text/css" media="screen">
                         .tabbed { height:420px; }
@@ -14,6 +16,7 @@
         <script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>
         <script src="js/jquery.slide.js" type="text/javascript"></script>
         <script src="js/jquery-func.js" type="text/javascript"></script>
+        <script src="js/carrito.js" type="text/javascript"></script>
 
     </head>
     <body>
@@ -98,6 +101,16 @@
             </div>
         </div>
         <!-- End Main -->
+        <div id="basic-modal-content">
+            <h3>Basic Modal Dialog</h3>
+            <p>For this demo, SimpleModal is using this "hidden" data for its content. You can also populate the modal dialog with an AJAX response, standard HTML or DOM element(s).</p>
+            <p>Examples:</p>
+            <p><code>$('#basicModalContent').modal(); // jQuery object - this demo</code></p>
+            <p><code>$.modal(document.getElementById('basicModalContent')); // DOM</code></p>
+            <p><code>$.modal('&lt;p&gt;&lt;b&gt;HTML&lt;/b&gt; elements&lt;/p&gt;'); // HTML</code></p>
+            <p><code>$('&lt;div&gt;&lt;/div&gt;').load('page.html').modal(); // AJAX</code></p>
 
+            <p><a href='http://www.ericmmartin.com/projects/simplemodal/'>More details...</a></p>
+        </div>
     </body>
 </html>

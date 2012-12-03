@@ -6,7 +6,7 @@ body {
     line-height:17px;
     color:#6f6e6e;
 }
-input, textarea, select { font-family: Arial, sans-serif; font-size:12px; color:#333; }
+input, textarea, select { font-family: Arial, sans-serif; font-size:12px; color:#333; text-align: center }
 textarea { overflow:auto;}
 
 a img { border:0; }
