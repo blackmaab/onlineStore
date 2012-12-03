@@ -5,7 +5,8 @@
         <title>Computer Innovation</title>
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/basic.css" type="text/css" media="all" />
-         <link rel="stylesheet" href="css/jquery.gritter.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/jquery.gritter.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/jquery-ui-1.8.24.custom.css" type="text/css" media="all" />
         <!--[if lte IE 6]>
                 <style type="text/css" media="screen">
                         .tabbed { height:420px; }
@@ -16,7 +17,7 @@
         <script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>
         <script src="js/jquery.slide.js" type="text/javascript"></script>
         <script src="js/jquery-func.js" type="text/javascript"></script>
-        <script src="js/carrito.js" type="text/javascript"></script>
+        <script src="js/general.js" type="text/javascript"></script>
 
     </head>
     <body>

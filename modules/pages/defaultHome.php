@@ -5,11 +5,14 @@
  * Hora: 05:30:47 PM
  * @author Mario Alvarado
  */
+include_once 'modules/class/Categoria.class.php';
+$newCategoria = new Categoria();
+$resulCategoria = $newCategoria->listarCategoria();
 ?>
 <!-- Tabs -->
 <div class="tabs">
     <ul>
-        <li><a href="#" class="active"><span>Accesorios</span></a></li>
+        <li><a href="#" class="active"><span>Accesorios <?php echo "Total cat: ".count($resulCategoria);?></span></a></li>
         <li><a href="#"><span>Cases</span></a></li>
         <li><a href="#" class="red"><span>CPU</span></a></li>
         <li><a href="#"><span>Disco Duro</span></a></li>

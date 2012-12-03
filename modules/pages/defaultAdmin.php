@@ -18,6 +18,7 @@
                         <td>Nueva Categoria:</td>
                         <td>
                             <input type="text" name="txtCategoria" id="txtCategoria" alt="*" title="Campo requerido">
+                            <input type="hidden" id="txtIdCategoria">
                         </td>
                         <td>
                             <input type="button" name="btnCategoria" id="btnCategoria" value="Agregar">
@@ -25,8 +26,17 @@
                     </tr>
 
                 </table>
-
             </form>
+            <form name="frmSearchCategoria" id="frmSearchCategoria">
+                <table>
+                    <tr>
+                        <td>Buscar:</td>
+                        <td><input type="text" name="txtSearchCategoria" id="txtSearchCategoria" alt="*" title="Campo Requerido"></td>
+                        <td><input type="button" id="btnSearchCategoria" value="Buscar"></td>
+                    </tr>
+                </table>
+            </form>
+            <div id="searchCategoria"></div>
         </div>
         <!-- End Primer Tab Content -->
 

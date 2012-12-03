@@ -13,7 +13,7 @@ class DataSource {
     private $hostname = "localhost";
     private $userData = "admin";
     private $passwordData = "admin";
-    private $database = "miempleodb";
+    private $database = "onlineStore";
     public $conection;
 
     public function conexion() {

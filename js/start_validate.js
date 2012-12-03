@@ -58,6 +58,7 @@ jQuery.validarCampos=function(nameForm){
 		
     //verifiacion de los errores
     if(contadorErrores>0){
+        $.mensajeInformativo('Faltan campos por llenar', 'e');
         return false;
     }else{
         return true;

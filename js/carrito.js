@@ -1,7 +1,4 @@
-//incluyendo mas archivos
-document.write("<script type='text/javascript' src='js/jquery.simplemodal-1.4.3.js'></script>");
-document.write("<script type='text/javascript' src='js/jquery.gritter.js'></script>");
-document.write("<script type='text/javascript' src='js/start_validate.js'></script>");
+
 
 $(document).ready(function(){
     
@@ -37,13 +34,6 @@ $(document).ready(function(){
     });
     
     
-    $('#btnCategoria').click(function(){
-        if($.validarCampos("#frmCategoria")==true){
-            $.mensajeInformativo('Registro Agregado', 'i');
-        }else{
-            $.mensajeInformativo('Faltan campos por llenar', 'e');
-        }
-    });
     $("#btnLogin").click(function(){
         //verificacion que los campos esten llenos
         if($.validarCampos("#frmLogin")==true){
