@@ -1,7 +1,7 @@
 function addCategoria(){
     if($.validarCampos("#frmCategoria")){
             
-        $.post('modules/procedures/categoria.proceduce.php',
+        $.post('modules/procedures/categoria.procedure.php',
         {
             txtCategoria:$('#txtCategoria').attr('value'),
             txtType:"add"
@@ -10,7 +10,7 @@ function addCategoria(){
             if(data=="true"){
                 $.mensajeInformativo('Categoria agregada exitosamente','i');				
                 $.limpiarCampos("#frmCategoria");  
-            //cargarComboCategoria("#selArea", "-");
+                cargarComboCategoria("#selCategoria", "-");
             }else{                    
                 $.mensajeInformativo('Hubo un error al guardar el Categoria. Intente de nuevo.','e');					
             }							
@@ -24,7 +24,7 @@ function searchCategoria(){
     if($.validarCampos("#frmSearchCategoria")){
         $.ajax({
             type: 'POST',
-            url: 'modules/procedures/categoria.proceduce.php',
+            url: 'modules/procedures/categoria.procedure.php',
             dataType:'html',
             data: {
                 txtCategoria: $('#txtSearchCategoria').attr('value'), 
@@ -47,7 +47,7 @@ function selCategoria(id,des){
 function updateCategoria(){
     if($.validarCampos("#frmCategoria")){
             
-        $.post('modules/procedures/categoria.proceduce.php',
+        $.post('modules/procedures/categoria.procedure.php',
         {
             txtIdCategoria:$('#txtIdCategoria').attr('value'),
             txtCategoria:$('#txtCategoria').attr('value'),
@@ -60,7 +60,7 @@ function updateCategoria(){
                 //restableciendo botones
                 $("#btnCategoria").attr("value","Agregar");
                 searchCategoria();     
-                //cargarComboCategoria("#selArea", "-");
+                cargarComboCategoria("#selCategoria", "-");
             }else{                    
                 $.mensajeInformativo('Hubo un error al modificar el Categoria. Intente de nuevo.','e');					
             }							
@@ -75,9 +75,9 @@ function updateCategoria(){
 
 
 function deleteCategoria(id){
-    var res=confirm("Desea eliminar el registro");   
+    var res=confirm("¿Desea eliminar el registro?");   
     if(res==true){
-        $.post('modules/procedures/categoria.proceduce.php',
+        $.post('modules/procedures/categoria.procedure.php',
         {
             txtIdCategoria:id,            
             txtType:"delete"
@@ -89,7 +89,7 @@ function deleteCategoria(id){
                 //restableciendo botones
                 $("#btnCategoria").attr("value","Agregar");
                 searchCategoria();  
-                cargarComboCategoria("#selArea", "-");
+                cargarComboCategoria("#selCategoria", "-");
             }else{                                    
                 $.mensajeInformativo('Hubo un error al eliminar el Categoria. Intente de nuevo.','e');					
             }							

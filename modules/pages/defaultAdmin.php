@@ -24,9 +24,11 @@
                             <input type="button" name="btnCategoria" id="btnCategoria" value="Agregar">
                         </td>
                     </tr>
-
                 </table>
             </form>
+            <br>
+            <hr>
+            <br>
             <form name="frmSearchCategoria" id="frmSearchCategoria">
                 <table>
                     <tr>
@@ -39,23 +41,116 @@
             <div id="searchCategoria"></div>
         </div>
         <!-- End Primer Tab Content -->
-
         <!-- Segundo Tab Content -->
+        <div class="tab-content" style="display:block;">
+            <form name="frmMarca" id="frmMarca">
+                <table>
+                    <tr>
+                        <td>Nueva Marca:</td>
+                        <td>
+                            <input type="text" name="txtMarca" id="txtMarca" alt="*" title="Campo requerido">
+                            <input type="hidden" id="txtIdMarca">
+                        </td>
+                        <td>
+                            <input type="button" name="btnMarca" id="btnMarca" value="Agregar">
+                        </td>
+                    </tr>
 
+                </table>
+            </form>
+            <br>
+            <hr>
+            <br>
+            <form name="frmSearchMarca" id="frmSearchMarca">
+                <table>
+                    <tr>
+                        <td>Buscar:</td>
+                        <td><input type="text" name="txtSearchMarca" id="txtSearchMarca" alt="*" title="Campo Requerido"></td>
+                        <td><input type="button" id="btnSearchMarca" value="Buscar"></td>
+                    </tr>
+                </table>
+            </form>
+            <div id="searchMarca"></div>
+        </div>
         <!-- End Segundo Tab Content -->
 
         <!-- Tercer Tab Content -->
+        <div class="tab-content" style="display:block;">
+            <form name="frmProducto" id="frmProducto">
+                <table>
+                    <tr>
+                        <td>Titulo:</td>
+                        <td>
+                            <input type="text" name="txtProducto" id="txtProducto" alt="*" title="Campo requerido">
+                            <input type="hidden" id="txtIdProducto" name="txtIdProducto">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Descripcion:</td>
+                        <td>
+                            <textarea id="txtDescripcionProducto" name="txtDescripcionProducto" alt="*" title="Campo Requerido"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Existencias:</td>
+                        <td>
+                            <input type="text" id="txtExistenciaProducto" name="txtExistenciaProducto" alt="*" title="Campo Requerido">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Costo:</td>
+                        <td>
+                            <input type="text" id="txtCostoProducto" name="txtCostoProducto" alt="*" title="Campo Requerido">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Imagen:</td>
+                        <td>
+                            <input type="file" id="txtImagenProducto" name="txtImagenProducto" alt="*" title="Campo Requerido">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Marca:</td>
+                        <td>
+                            <select id="selMarca" name="selMarca" title="Campo Requerido" alt="*"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Categor&iacute;a</td>
+                        <td>
+                            <select id="selCategoria" name="selCategoria" title="Campo Requerido" alt="*"></select>
+                        </td>
+                    </tr>                    
+                    <tr>
+                        <td>
+                            <input type="button" name="btnProducto" id="btnProducto" value="Agregar">
+                        </td>
+                    </tr>
 
+                </table>
+            </form>
+            <br>
+            <hr>
+            <br>
+            <form name="frmSearchProducto" id="frmSearchProducto">
+                <table>
+                    <tr>
+                        <td>Buscar:
+                            <input type="text" name="txtSearchProducto" id="txtSearchProducto" alt="*" title="Campo Requerido"></td>
+                        <td>
+                            Filtrar por:
+                            <select name="txtTipoSearchProducto" id="txtTipoSearchProducto">
+                                <option value="t">T&iacute;tulo</option>
+                                <option value="d">Descripci&oacute;n</option>
+                            </select>
+                        </td>
+                        <td><input type="button" id="btnSearchProducto" value="Buscar"></td>
+                    </tr>
+                </table>
+            </form>
+            <div id="searchProducto"></div>
+        </div>
         <!-- End Tercer Tab Content -->
-
-        <!--Cuarto Tab Content-->
-
-        <!--End Cuarto Tab Content-->
-
-        <!--Quinto Tab Content-->
-
-        <!--End Quinto Tab Content-->
-
     </div>
 
     <!-- Brands -->

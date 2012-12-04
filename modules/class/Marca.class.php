@@ -1,22 +1,17 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Categoria
+ * Description of Marca
  *
  * @author malvarado
  */
 include_once 'DataSource.class.php';
 
-class Categoria extends DataSource {
+class Marca extends DataSource {
 
     //Código Fuente
 
-    public $idCategoria = null;
+    public $idMarca = null;
     public $descripcion;
     public $fijar;
 
@@ -25,10 +20,10 @@ class Categoria extends DataSource {
         $this->conection->query("SET NAMES 'utf8'");
     }
 
-    public function addCategoria() {
+    public function addMarca() {
         try {
             $this->conection->beginTransaction();
-            $this->sqlQuery = "INSERT INTO categoria VALUES('',:descripcion)";
+            $this->sqlQuery = "INSERT INTO marca VALUES('',:descripcion)";
             $this->resultSet = $this->conection->prepare($this->sqlQuery);
             $this->resultSet->bindParam(":descripcion", $this->descripcion);
             $this->resultSet->execute();
@@ -38,14 +33,14 @@ class Categoria extends DataSource {
         } catch (PDOException $e) {
             $this->borrarCache();
             //$this->conection->rollBack();
-            print_r("Error al guardar el Categoria: " . $e->getMessage() . "\n");
+            print_r("Error al guardar el Marca: " . $e->getMessage() . "\n");
         }
     }
 
-    public function searchCategoria() {
+    public function searchMarca() {
         try {
 
-            $this->sqlQuery = "SELECT * FROM categoria WHERE descripcion like :descripcion";
+            $this->sqlQuery = "SELECT * FROM marca WHERE descripcion like :descripcion";
             $this->resultSet = $this->conection->prepare($this->sqlQuery);
             $this->resultSet->bindParam(":descripcion", $this->descripcion);
             $this->resultSet->execute();
@@ -66,8 +61,8 @@ class Categoria extends DataSource {
                 while ($row = $this->resultSet->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr><td><b>" . ($cont++) . "</b></td>";
                     echo "<td>" . $row["descripcion"] . "</td>";
-                    echo "<td align='center'><input type='image' src='images/tabla/edit.png' onclick='selCategoria(\"" . $row["idcategoria"] . "\",\"" . $row["descripcion"] . "\")'></td>";
-                    echo "<td align='center'><input type='image' src='images/tabla/del.png' onclick='deleteCategoria(\"" . $row["idcategoria"] . "\")'></td></tr>";
+                    echo "<td align='center'><input type='image' src='images/tabla/edit.png' onclick='selMarca(\"" . $row["idmarca"] . "\",\"" . $row["descripcion"] . "\")'></td>";
+                    echo "<td align='center'><input type='image' src='images/tabla/del.png' onclick='deleteMarca(\"" . $row["idmarca"] . "\")'></td></tr>";
                 }
                 echo "</tbody>";
                 echo "</table>";
@@ -80,17 +75,17 @@ class Categoria extends DataSource {
         } catch (PDOException $e) {
             $this->borrarCache();
             //$this->conection->rollBack();
-            print_r("Error al consultar el Categoria: " . $e->getMessage() . "\n");
+            print_r("Error al consultar el Marca: " . $e->getMessage() . "\n");
         }
     }
 
-    public function updateCategoria() {
+    public function updateMarca() {
         try {
             $this->conection->beginTransaction();
-            $this->sqlQuery = "UPDATE categoria SET descripcion=:descripcion WHERE idcategoria=:idCategoria";
+            $this->sqlQuery = "UPDATE marca SET descripcion=:descripcion WHERE idmarca=:idMarca";
             $this->resultSet = $this->conection->prepare($this->sqlQuery);
             $this->resultSet->bindParam(":descripcion", $this->descripcion);
-            $this->resultSet->bindParam(":idCategoria", $this->idCategoria);
+            $this->resultSet->bindParam(":idMarca", $this->idMarca);
             $this->resultSet->execute();
             $this->conection->commit();
             $this->borrarCache();
@@ -98,16 +93,16 @@ class Categoria extends DataSource {
         } catch (PDOException $e) {
             $this->borrarCache();
             $this->conection->rollBack();
-            echo "Error al actualizar la Categoria: " . $e->getMessage() . "\n";
+            echo "Error al actualizar la Marca: " . $e->getMessage() . "\n";
         }
     }
 
-    public function deleteCategoria() {
+    public function deleteMarca() {
         try {
             $this->conection->beginTransaction();
-            $this->sqlQuery = "DELETE FROM categoria WHERE idcategoria=:idCategoria";
+            $this->sqlQuery = "DELETE FROM marca WHERE idmarca=:idMarca";
             $this->resultSet = $this->conection->prepare($this->sqlQuery);
-            $this->resultSet->bindParam(":idCategoria", $this->idCategoria);
+            $this->resultSet->bindParam(":idMarca", $this->idMarca);
             $this->resultSet->execute();
             $this->conection->commit();
             $this->borrarCache();
@@ -115,26 +110,26 @@ class Categoria extends DataSource {
         } catch (PDOException $e) {
             $this->borrarCache();
             $this->conection->rollBack();
-            echo "Error al eliminar Categoria: " . $e->getMessage() . "\n";
+            echo "Error al eliminar Marca: " . $e->getMessage() . "\n";
         }
     }
 
-    public function cargarComboCategoria() {
+    public function cargarComboMarca() {
         try {
 
-            $this->sqlQuery = "SELECT * FROM categoria ORDER BY descripcion ASC";
+            $this->sqlQuery = "SELECT * FROM marca ORDER BY descripcion ASC";
             $this->resultSet = $this->conection->prepare($this->sqlQuery);
             //$this->resultSet->bindParam(":descripcion", $this->descripcion);
             $this->resultSet->execute();
             $coicidencias = $this->resultSet->rowCount();
             if ($coicidencias > 0) {
                 $seleccionar = "";
-                echo "<option value='-'>Elija una categoria</option>";
+                echo "<option value='-'>Elija una marca</option>";
                 while ($row = $this->resultSet->fetch(PDO::FETCH_ASSOC)) {
-                    if ($this->fijar == $row["idcategoria"]) {
+                    if ($this->fijar == $row["idmarca"]) {
                         $seleccionar = "selected='selected'";
                     }
-                    echo "<option value='" . $row["idcategoria"] . "' " . $seleccionar . ">" . $row["descripcion"] . "</option>";
+                    echo "<option value='" . $row["idmarca"] . "' " . $seleccionar . ">" . $row["descripcion"] . "</option>";
                     $seleccionar = "";
                 }
             } else {
@@ -146,12 +141,12 @@ class Categoria extends DataSource {
         } catch (PDOException $e) {
             $this->borrarCache();
             //$this->conection->rollBack();
-            print_r("Error al cargar la categoria: " . $e->getMessage() . "\n");
+            print_r("Error al cargar el marca: " . $e->getMessage() . "\n");
         }
     }
 
-    public function listarCategoria() {
-        $this->sqlQuery = "SELECT * FROM categoria ORDER BY descripcion ASC";
+    public function listarMarca() {
+        $this->sqlQuery = "SELECT * FROM marca ORDER BY descripcion ASC";
         $this->resultSet = $this->conection->prepare($this->sqlQuery);
         //$this->resultSet->bindParam(":descripcion", $this->descripcion);
         $this->resultSet->execute();

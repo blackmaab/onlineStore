@@ -29,7 +29,21 @@ jQuery.validarCampos=function(nameForm){
         //$(this).addClass('defaultText');
         }
     });
-		
+	
+
+    //verifiacion de file
+    $(nameForm +' input:file').each(function(index){
+        //verifiacion si el campo esta vacio
+        $(this).removeClass();
+        required= $(this).attr('alt');
+        if(($(this).attr('value')=="" || $(this).attr('value')==null) && required=="*"){                        
+            $(this).addClass('errorText');
+            contadorErrores++;
+        }else{
+        //$(this).addClass('defaultText');
+        }
+    });
+    
     //verificacion de textarea
     $(nameForm + ' textarea').each(function(index){
         //verificacion si el campo esta vacio
@@ -55,6 +69,9 @@ jQuery.validarCampos=function(nameForm){
         //$(this).addClass('defaultSelect');
         }
     });
+    
+    
+    
 		
     //verifiacion de los errores
     if(contadorErrores>0){
@@ -92,7 +109,7 @@ jQuery.validarTecla=function(event,caja,opc){
             }
             break;
         case "texto":
-            patron=/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ\s:;,."¿?!¡ ]{1}/;
+            patron=/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ\s:;,."¿?!¡-]{1}/;
             break;	
         case "email":
             patron=/^[0-9a-z_.@]{1}/;
@@ -273,6 +290,11 @@ jQuery.limpiarCampos=function(nameForm){
 		
     //limpiando type="password"
     $(nameForm +' input:password').each(function(index){
+        $(this).attr('value','');
+    });
+    
+    //limpiando type="file"
+    $(nameForm +' input:file').each(function(index){
         $(this).attr('value','');
     });
 		
