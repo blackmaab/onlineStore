@@ -76,5 +76,6 @@ $(document).ready(function(){
         searchProducto();
     });
     
-    
+    //edicion especial del texarea
+    $('#txtDescripcionProducto').wysiwyg();
 });

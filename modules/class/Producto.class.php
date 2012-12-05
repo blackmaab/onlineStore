@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Producto
  *
@@ -155,8 +150,8 @@ class Producto extends DataSource {
                     echo "<td><img src='" . $row["url_image"] . "' alt='' height='96' width='96'/></td>";
                     echo "<td>" . $row["marca"] . "</td>";
                     echo "<td>" . $row["categoria"] . "</td>";
-                    echo "<td align='center'><input type='image' src='images/tabla/edit.png' onclick='selProducto(\"" . $row["idproducto"] . "\",\"" . $row["descripcion"] . "\")'></td>";
-                    echo "<td align='center'><input type='image' src='images/tabla/del.png' onclick='deleteProducto(\"" . $row["idproducto"] . "\")'></td></tr>";
+                    echo "<td align='center'><input type='image' src='images/tabla/edit.png' onclick='selProducto(\"" . $row["idproducto"] . "\",\"" . $row["titulo"] . "\",\"" . mysql_real_escape_string($row["descripcion"]) . "\",\"" . $row["existencias"] . "\",\"" . $row["costo"] . "\",\"" . $row["idmarca"] . "\",\"" . $row["idcategoria"] . "\",\"".$row["url_image"]."\")'></td>";
+                    echo "<td align='center'><input type='image' src='images/tabla/del.png' onclick='deleteProducto(\"" . $row["idproducto"] . "\",\"".$row["url_image"]."\")'></td></tr>";
                 }
                 echo "</tbody>";
                 echo "</table>";
@@ -176,10 +171,38 @@ class Producto extends DataSource {
     public function updateProducto() {
         try {
             $this->conection->beginTransaction();
-            $this->sqlQuery = "UPDATE producto SET descripcion=:descripcion WHERE idproducto=:idProducto";
+            //verificacion si existe una imagen nueva
+            if ($this->url_image != "" && $this->url_image != null) {
+                $this->sqlQuery = "UPDATE producto SET titulo=:titulo,descripcion=:descripcion,";
+                $this->sqlQuery.="existencias=:existencias,costo=:costo,url_image=:url_image,";
+                $this->sqlQuery.="idmarca=:idmarca,idcategoria=:idcategoria WHERE idproducto=:idProducto";
+            } else {
+                $this->sqlQuery = "UPDATE producto SET titulo=:titulo,descripcion=:descripcion,";
+                $this->sqlQuery.="existencias=:existencias,costo=:costo,";
+                $this->sqlQuery.="idmarca=:idmarca,idcategoria=:idcategoria WHERE idproducto=:idProducto";
+            }
+
             $this->resultSet = $this->conection->prepare($this->sqlQuery);
-            $this->resultSet->bindParam(":descripcion", $this->descripcion);
-            $this->resultSet->bindParam(":idProducto", $this->idProducto);
+            //verificacion si existe una imagen nueva
+            if ($this->url_image != "" && $this->url_image != null) {
+                $this->resultSet->bindParam(":titulo", $this->titulo);
+                $this->resultSet->bindParam(":descripcion", $this->descripcion);
+                $this->resultSet->bindParam(":existencias", $this->existencias);
+                $this->resultSet->bindParam(":costo", $this->costo);
+                $this->resultSet->bindParam(":url_image", $this->url_image);
+                $this->resultSet->bindParam(":idmarca", $this->idMarca);
+                $this->resultSet->bindParam(":idcategoria", $this->idCategoria);
+                $this->resultSet->bindParam(":idProducto", $this->idProducto);
+            } else {
+                $this->resultSet->bindParam(":titulo", $this->titulo);
+                $this->resultSet->bindParam(":descripcion", $this->descripcion);
+                $this->resultSet->bindParam(":existencias", $this->existencias);
+                $this->resultSet->bindParam(":costo", $this->costo);            
+                $this->resultSet->bindParam(":idmarca", $this->idMarca);
+                $this->resultSet->bindParam(":idcategoria", $this->idCategoria);
+                $this->resultSet->bindParam(":idProducto", $this->idProducto);
+            }
+
             $this->resultSet->execute();
             $this->conection->commit();
             $this->borrarCache();

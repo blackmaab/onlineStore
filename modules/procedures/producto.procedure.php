@@ -13,8 +13,6 @@ include_once '../class/Producto.class.php';
 $newProducto = new Producto();
 if (isset($_POST["txtType"])) {
     if ($_POST["txtType"] == "add") {
-
-
         $newProducto->titulo = strtoupper($_POST['txtProducto']);
         $newProducto->descripcion = strtoupper($_POST['txtDescripcionProducto']);
         $newProducto->existencias = $_POST['txtExistenciaProducto'];
@@ -38,11 +36,37 @@ if (isset($_POST["txtType"])) {
 
         $newProducto->searchProducto();
     } else if ($_POST["txtType"] == "update") {
+        //llenado de datos principales
         $newProducto->idProducto = $_POST["txtIdProducto"];
-        $newProducto->descripcion = strtoupper($_POST["txtProducto"]);
-        $newProducto->updateProducto();
+        $newProducto->titulo = strtoupper($_POST['txtProducto']);
+        $newProducto->descripcion = strtoupper($_POST['txtDescripcionProducto']);
+        $newProducto->existencias = $_POST['txtExistenciaProducto'];
+        $newProducto->costo = $_POST['txtCostoProducto'];
+        $newProducto->idCategoria = $_POST['idCategoria'];
+        $newProducto->idMarca = $_POST['idMarca'];
+
+        //verificacion si se envia un archivo
+        if (isset($_FILES['txtImagenProducto']['name'])) {
+            $newProducto->url_image = $_POST["txtUrlImage"];
+            $newProducto->deleteFile();
+            $res = $newProducto->uploadFile($_FILES['txtImagenProducto']['tmp_name'], $_FILES['txtImagenProducto']['name']);
+            //verificacion de error al momento de subir la imagen
+            if ($res == "true") {
+                $newProducto->updateProducto();
+            } else {
+                echo "error";
+            }
+        } else {
+            $newProducto->updateProducto();
+        }
+
+//        $newProducto->idProducto = $_POST["txtIdProducto"];
+//        $newProducto->descripcion = strtoupper($_POST["txtProducto"]);
+//        $newProducto->updateProducto();
     } else if ($_POST["txtType"] == "delete") {
         $newProducto->idProducto = $_POST["txtIdProducto"];
+        $newProducto->url_image = $_POST["txtImage"];
+        $newProducto->deleteFile();
         $newProducto->deleteProducto();
     } else if ($_POST["txtType"] == "cargar") {
         $newProducto->fijar = $_POST["txtFijar"];

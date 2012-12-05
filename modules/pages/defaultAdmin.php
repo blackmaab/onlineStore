@@ -88,7 +88,7 @@
                     <tr>
                         <td>Descripcion:</td>
                         <td>
-                            <textarea id="txtDescripcionProducto" name="txtDescripcionProducto" alt="*" title="Campo Requerido"></textarea>
+                            <textarea id="txtDescripcionProducto" name="txtDescripcionProducto" alt="*" title="Campo Requerido" rows="5" cols="47"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -107,6 +107,7 @@
                         <td>Imagen:</td>
                         <td>
                             <input type="file" id="txtImagenProducto" name="txtImagenProducto" alt="*" title="Campo Requerido">
+                            <input type="hidden" id="txtUrlImage" name="txtUrlImage">
                         </td>
                     </tr>
                     <tr>
@@ -152,7 +153,8 @@
         </div>
         <!-- End Tercer Tab Content -->
     </div>
-
+    <br><br><br>
+    <br><br><br>
     <!-- Brands -->
     <div class="brands">
         <h3>Marcas</h3>
