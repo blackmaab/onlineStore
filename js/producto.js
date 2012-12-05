@@ -29,7 +29,8 @@ function addProducto(){
                 success: function(data) {                    
                     if(data=="true"){
                         $.mensajeInformativo('Producto agregado exitosamente','i');				
-                        $.limpiarCampos("#frmProducto");  
+                        $.limpiarCampos("#frmProducto"); 
+                        $("#txtDescripcionProducto").wysiwyg("setContent","");
                     //cargarComboProducto("#selArea", "-");
                     }else if(data=="error"){                    
                         $.mensajeInformativo('El archivo no es una imagen.','e');
@@ -120,6 +121,7 @@ function updateProducto(){
                         $("#txtImagenProducto").attr("alt","*");
                         $("#txtImagenProducto").attr("title","Campo Requerido");
                         $("#btnProducto").attr("value","Agregar");
+                        $("#txtDescripcionProducto").wysiwyg("setContent","");
                         searchProducto();                    
                     }else if(data=="error"){                    
                         $.mensajeInformativo('El archivo no es una imagen.','e');
@@ -149,6 +151,7 @@ function deleteProducto(id,url_image){
             if(data=="true"){
                 $.mensajeInformativo('Producto eliminado exitosamente','i');				                
                 $.limpiarCampos("#frmProducto");
+                $("#txtDescripcionProducto").wysiwyg("setContent","");
                 //restableciendo botones
                 $("#btnProducto").attr("value","Agregar");
                 searchProducto();  

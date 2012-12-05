@@ -146,7 +146,7 @@ class Producto extends DataSource {
                     echo "<td>" . $row["titulo"] . "</td>";
                     echo "<td>" . $row["descripcion"] . "</td>";
                     echo "<td>" . $row["existencias"] . "</td>";
-                    echo "<td>" . $row["costo"] . "</td>";
+                    echo "<td>$ " . $row["costo"] . "</td>";
                     echo "<td><img src='" . $row["url_image"] . "' alt='' height='96' width='96'/></td>";
                     echo "<td>" . $row["marca"] . "</td>";
                     echo "<td>" . $row["categoria"] . "</td>";
