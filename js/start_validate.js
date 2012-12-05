@@ -82,6 +82,24 @@ jQuery.validarCampos=function(nameForm){
     }			
 }//fin de funcion validarCampos
 
+jQuery.validarUniqueText=function(idCaja){
+    respuesta=true;
+    $(idCaja).removeClass();
+    
+    required= $(idCaja).attr('alt');
+       
+    if(($(idCaja).attr('value')=="" || $(idCaja).attr('value')==null) && required=="*"){            
+        $(idCaja).addClass('errorText');
+        respuesta=false;
+    }
+        
+    if(respuesta==true){
+        return true;
+    }else{
+        $.mensajeInformativo('LLene el campo cantidad antes de agregarlo a la compra', 'e');
+        return false;
+    }
+}
 
 //validacion de tecla
 jQuery.validarTecla=function(event,caja,opc){

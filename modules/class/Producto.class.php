@@ -150,8 +150,8 @@ class Producto extends DataSource {
                     echo "<td><img src='" . $row["url_image"] . "' alt='' height='96' width='96'/></td>";
                     echo "<td>" . $row["marca"] . "</td>";
                     echo "<td>" . $row["categoria"] . "</td>";
-                    echo "<td align='center'><input type='image' src='images/tabla/edit.png' onclick='selProducto(\"" . $row["idproducto"] . "\",\"" . $row["titulo"] . "\",\"" . mysql_real_escape_string($row["descripcion"]) . "\",\"" . $row["existencias"] . "\",\"" . $row["costo"] . "\",\"" . $row["idmarca"] . "\",\"" . $row["idcategoria"] . "\",\"".$row["url_image"]."\")'></td>";
-                    echo "<td align='center'><input type='image' src='images/tabla/del.png' onclick='deleteProducto(\"" . $row["idproducto"] . "\",\"".$row["url_image"]."\")'></td></tr>";
+                    echo "<td align='center'><input type='image' src='images/tabla/edit.png' onclick='selProducto(\"" . $row["idproducto"] . "\",\"" . $row["titulo"] . "\",\"" . mysql_real_escape_string($row["descripcion"]) . "\",\"" . $row["existencias"] . "\",\"" . $row["costo"] . "\",\"" . $row["idmarca"] . "\",\"" . $row["idcategoria"] . "\",\"" . $row["url_image"] . "\")'></td>";
+                    echo "<td align='center'><input type='image' src='images/tabla/del.png' onclick='deleteProducto(\"" . $row["idproducto"] . "\",\"" . $row["url_image"] . "\")'></td></tr>";
                 }
                 echo "</tbody>";
                 echo "</table>";
@@ -197,7 +197,7 @@ class Producto extends DataSource {
                 $this->resultSet->bindParam(":titulo", $this->titulo);
                 $this->resultSet->bindParam(":descripcion", $this->descripcion);
                 $this->resultSet->bindParam(":existencias", $this->existencias);
-                $this->resultSet->bindParam(":costo", $this->costo);            
+                $this->resultSet->bindParam(":costo", $this->costo);
                 $this->resultSet->bindParam(":idmarca", $this->idMarca);
                 $this->resultSet->bindParam(":idcategoria", $this->idCategoria);
                 $this->resultSet->bindParam(":idProducto", $this->idProducto);
@@ -262,17 +262,21 @@ class Producto extends DataSource {
         }
     }
 
-    public function listarProducto() {
-        $this->sqlQuery = "SELECT * FROM producto ORDER BY descripcion ASC";
+    public function listarProductoPorCategoria() {
+        $this->sqlQuery = "SELECT a . * , b.descripcion AS marca, c.descripcion AS categoria ";
+        $this->sqlQuery.="FROM producto AS a ";
+        $this->sqlQuery.="INNER JOIN marca AS b ON a.idmarca = b.idmarca ";
+        $this->sqlQuery.="INNER JOIN categoria AS c ON a.idcategoria = c.idcategoria ";
+        $this->sqlQuery.= "WHERE a.idcategoria like :idcategoria order by a.titulo asc";
         $this->resultSet = $this->conection->prepare($this->sqlQuery);
-        //$this->resultSet->bindParam(":descripcion", $this->descripcion);
+        $this->resultSet->bindParam(":idcategoria", $this->idCategoria);
         $this->resultSet->execute();
         $coicidencias = $this->resultSet->rowCount();
         if ($coicidencias > 0) {
             $arreglo = array();
             $contador = 0;
             while ($row = $this->resultSet->fetch(PDO::FETCH_ASSOC)) {
-                $arreglo[$contador] = $row["descripcion"];
+                $arreglo[$contador] = array($row["idproducto"], $row["titulo"], $row["marca"], $row["costo"], $row["url_image"],$row["idmarca"],$row["idcategoria"]);
                 $contador++;
             }
             return $arreglo;

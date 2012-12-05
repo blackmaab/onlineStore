@@ -5,6 +5,7 @@ document.write("<script type='text/javascript' src='js/start_validate.js'></scri
 document.write("<script type='text/javascript' src='js/categoria.js'></script>");
 document.write("<script type='text/javascript' src='js/marca.js'></script>");
 document.write("<script type='text/javascript' src='js/producto.js'></script>");
+document.write("<script type='text/javascript' src='js/carrito.js'></script>");
 
 $(document).ready(function(){
     //validacion de formulario categoria    

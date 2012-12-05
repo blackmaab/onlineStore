@@ -6,111 +6,159 @@
  * @author Mario Alvarado
  */
 include_once 'modules/class/Categoria.class.php';
+include_once 'modules/class/Producto.class.php';
 $newCategoria = new Categoria();
 $resulCategoria = $newCategoria->listarCategoria();
+
+$newProducto = new Producto();
 ?>
 <!-- Tabs -->
 <div class="tabs">
     <ul>
-        <li><a href="#" class="active"><span>Accesorios <?php echo "Total cat: ".count($resulCategoria);?></span></a></li>
-        <li><a href="#"><span>Cases</span></a></li>
-        <li><a href="#" class="red"><span>CPU</span></a></li>
-        <li><a href="#"><span>Disco Duro</span></a></li>
-        <li><a href="#" class="red"><span>Memorias RAM</span></a></li>
-        <li><a href="#"><span>Microprocesadores</span></a></li>
-        <li><a href="#" class="red"><span>Motherboard</span></a></li>
+        <?php
+        if ($resulCategoria != null && $resulCategoria != false) {
+            $cont = 1;
+            foreach ($resulCategoria as $row => $data) {
+                if ($cont == 1) {
+                    $class = "active";
+                } elseif ($cont % 3 == 0) {
+                    $class = "red";
+                } else {
+                    $class = "";
+                }
+                ?>
+                <li><a href="#" class="<?php echo $class; ?>"><span><?php echo $data[1]; ?></span></a></li>
+                <?php
+                $cont++;
+            }
+        } else {
+            ?>
+            <li><a href="#" class="active"><span>No hay productos registrados</span></a></li>
+            <?php
+        }
+        ?>
     </ul>
 </div>
 <!-- Tabs -->
 
 <!-- Container -->
-<div id="container">                     
+<div id="container">     
+    <!-- tabbed -->
     <div class="tabbed">
+        <?php
+        //verificacion si existen categorias
+        if ($resulCategoria != null && $resulCategoria != false) {
+            //recorriendo las categorias
+            foreach ($resulCategoria as $row => $data) {
+                $newProducto->idCategoria = $data[0];
+                $resulProductos = $newProducto->listarProductoPorCategoria();
+                //verificacion si ha devuelto registros
+                if ($resulProductos != null && $resulProductos != false) {
+                    ?>
+                    <div class="tab-content" style="display:block;">
+                        <div class="items">
+                            <div class="cl">&nbsp;</div>
+                            <ul>
+                                <?php
+                                foreach ($resulProductos as $rowP => $dataP) {
+                                    ?>
 
-        <!-- Primer Tab Content -->
-        <div class="tab-content" style="display:block;">
-            <div class="items">
-                <div class="cl">&nbsp;</div>
-                <ul>
-                    <li>
-                        <div class="image">
-                            <a href="#"><img src="images/accesorios/adaptadorAudio.jpg" alt="" height="83"/></a>
-                        </div>
-                        <p>
-                            Producto: <span>Adaptador de Audio 3-D</span><br />                                                        
-                            Marca: <span>Manhattan</span><br />
-                            Detalle: &nbsp;<a href="#">Ver m&aacute;s</a>       
-                        </p>
-                        <p class="price">Precio:&nbsp;&nbsp;<strong>$ 7.00</strong></p>
-                        <table>
-                            <tr>
-                                <td>Cantidad a Comprar:</td>
-                                <td><input type="text" name="txtCantidad" id="txtCantidad" size="1"></td>
-                                <td><img src="images/car.png" title="Comprar" alt="Comprar" width="32" height="32" align="right" id="btnCar"/> </td>
-                            </tr>                            
-                        </table>
+                                    <li>
+                                        <div class="image">
+                                            <a href="#"><img src="<?php echo $dataP[4]; ?>" alt="" height="83"/></a>
+                                        </div>
+                                        <p>
+                                            <?php
+                                            //reducir el titulo
+                                            if (strlen($dataP[1]) > 15) {
+                                                $titulo = substr($dataP[1], 0, 15) . "...";
+                                            } else {
+                                                $titulo = $dataP[1];
+                                            }
+                                            ?>
+                                            Producto: <span><?php echo $titulo; ?></span><br />                                                        
+                                            Marca: <span><?php echo $dataP[2]; ?></span><br />
+                                            Detalle: &nbsp;<a href="#">Ver m&aacute;s</a>       
+                                        </p>
+                                        <p class="price">Precio:&nbsp;&nbsp;<strong>$ <?php echo $dataP[3]; ?></strong></p>
+                                        <table>
+                                            <tr>
+                                                <td>Cantidad a Comprar:</td>
+                                                <td>
+                                                    <input type="text" name="txtCantidad<?php echo $dataP[0] . $dataP[5] . $dataP[6]; ?>" id="txtCantidad<?php echo $dataP[0] . $dataP[5] . $dataP[6]; ?>" size="1" class="txtCantidad" alt="*" title="Campo Requerido">
+                                                </td>
+                                                <td>
+                                                    <img src="images/car.png" title="Comprar" alt="Comprar" width="32" height="32" align="right" id="btnCar<?php echo $dataP[0] . $dataP[5] . $dataP[6]; ?>" onclick="agregarCarrito('<?php echo $dataP[0]; ?>','<?php echo $dataP[1]; ?>','<?php echo $dataP[2]; ?>','<?php echo $dataP[3]; ?>','#txtCantidad<?php echo $dataP[0] . $dataP[5] . $dataP[6]; ?>','<?php echo $dataP[4]; ?>')"/> 
+                                                </td>
+                                            </tr>                            
+                                        </table>
 
-                    </li>
-                    <li>
-                        <div class="image">
-                            <a href="#"><img src="images/accesorios/adaptadorSata.jpg" alt="" height="83"/></a>
-                        </div>
-                        <p>
-                            Producto: <span>Adaptador USB/SATA</span><br />                                                       
-                            Marca: <span>Manhattan</span><br />
-                            Detalle: &nbsp;<a href="#">Ver m&aacute;s</a>       
-                        </p>
-                        <p class="price">Precio:&nbsp;&nbsp;<strong>$ 35.00</strong></p>
-                        <img src="images/car.png" title="Comprar" alt="Comprar" width="32" height="32" align="right"/>      
-                    </li>                    
-                    <li>                       
-                        <div class="image">
-                            <a href="#"><img src="images/accesorios/camaraWeb.jpg" alt="" height="83"/></a>
-                        </div>
+                                    </li>
 
-                        <p>
-                            Producto: <span>Cámara Web de Alta</span><br />
-                            Marca: <span>Manhatan</span><br />
-                            Detalle: &nbsp;<a href="#">Ver m&aacute;s</a>       
-                        </p>
-                        <p class="price">Precio:&nbsp;&nbsp;<strong>$ 25.00</strong></p>
-                        <img src="images/car.png" title="Comprar" alt="Comprar" width="32" height="32" align="right"/>                       
-                    </li>
-                    <li>
-                        <div class="image">
-                            <a href="#"><img src="images/accesorios/fuenteAtx.jpg" alt="" height="83"/></a>
+                                    <?php
+                                }//end foreach $resulProductos
+                                ?>
+                            </ul>
                         </div>
-                        <p>
-                            Producto: <span>Fuente de poder ATX 550</span><br /> 
-                            Marca: <span>Omega</span><br />
-                            Detalle: &nbsp;<a href="#">Ver m&aacute;s</a>                            
-                        </p>
-                        <p class="price">Precio:&nbsp;&nbsp;<strong>$ 12.50</strong></p>
-                        <img src="images/car.png" title="Comprar" alt="Comprar" width="32" height="32" align="right"/>
-                    </li>
-                </ul>
-                <div class="cl">&nbsp;</div>
+                    </div>
+                    <?php
+                } else {
+                    //imprimir div vacio en caso de no encontrar productos en 
+                    //la categoria que esta recorriendo
+                    ?>
+                    <div class="tab-content" style="display:block;">
+                        <div class="items">
+                            <div class="cl">&nbsp;</div>
+                            <ul><li></li></ul>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }//end foreach categoria
+        } else {
+            ?>
+            <div class="tab-content" style="display:block;">
+                <div class="items">
+                    <div class="cl">&nbsp;</div>
+                    <ul><li></li></ul>
+                </div>
             </div>
-        </div>
-        <!-- End Primer Tab Content -->
+            <?php
+        }
+        ?>
 
-        <!-- Segundo Tab Content -->
-
-        <!-- End Segundo Tab Content -->
-
-        <!-- Tercer Tab Content -->
-
-        <!-- End Tercer Tab Content -->
-
-        <!--Cuarto Tab Content-->
-
-        <!--End Cuarto Tab Content-->
-
-        <!--Quinto Tab Content-->
-
-        <!--End Quinto Tab Content-->
 
     </div>
+    <!-- end tabbed -->
+
+    <div id="divCarrito" style="display: none">
+        <form name="frmCarrito" id="frmCarrito">
+            <table class="ui-widget ui-widget-content">
+                <thead>
+                    <tr class="ui-widget-header">
+                        <th>#</th>
+                        <th>Titulo</th>
+                        <th>Marca</th>
+                        <th>Imagen</th>
+                        <th>Costo</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>-</th>
+                    </tr>
+                </thead>
+                <tbody id="tableCarritoBody">
+
+                </tbody>
+                <tfoot id="tableCarritoFoot">
+                    <tr id='rowFoot'>
+                        <td colspan='6' align='left' style="font-size: 14px;color: #cd0a0a;font-weight: bold;">Total a pagar</td>
+                        <td id='cellTotal' style="font-size: 14px;color: #cd0a0a;font-weight: bold;"><td>
+                    </tr>
+                </tfoot>
+            </table>
+        </form>
+    </div>
+
 
     <!-- Brands -->
     <div class="brands">

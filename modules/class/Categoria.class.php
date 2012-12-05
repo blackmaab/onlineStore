@@ -160,7 +160,7 @@ class Categoria extends DataSource {
             $arreglo = array();
             $contador = 0;
             while ($row = $this->resultSet->fetch(PDO::FETCH_ASSOC)) {
-                $arreglo[$contador] = $row["descripcion"];
+                $arreglo[$contador] = array($row["idcategoria"],$row["descripcion"]);
                 $contador++;
             }
             return $arreglo;
