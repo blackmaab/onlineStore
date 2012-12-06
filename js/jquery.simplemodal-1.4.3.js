@@ -199,7 +199,7 @@
 		close: true,
 		closeHTML: '<a class="modalCloseImg" title="Close"></a>',
 		closeClass: 'simplemodal-close',
-		escClose: true,
+		escClose: false,
 		overlayClose: false,
 		fixed: true,
 		position: null,

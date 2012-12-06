@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 2.11.6
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-12-2012 a las 15:04:21
--- Versión del servidor: 5.0.51
--- Versión de PHP: 5.2.6
+-- Tiempo de generación: 06-12-2012 a las 05:45:45
+-- Versión del servidor: 5.5.24-log
+-- Versión de PHP: 5.4.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,14 +28,14 @@ USE `onlinestore`;
 -- Estructura de tabla para la tabla `categoria`
 --
 
-CREATE TABLE `categoria` (
-  `idcategoria` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `categoria` (
+  `idcategoria` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(45) NOT NULL,
-  PRIMARY KEY  (`idcategoria`)
+  PRIMARY KEY (`idcategoria`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Clasifica cada uno de los articulos que existen en la tienda' AUTO_INCREMENT=7 ;
 
 --
--- Volcar la base de datos para la tabla `categoria`
+-- Volcado de datos para la tabla `categoria`
 --
 
 INSERT INTO `categoria` (`idcategoria`, `descripcion`) VALUES
@@ -51,22 +52,17 @@ INSERT INTO `categoria` (`idcategoria`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `compra`
 --
 
-CREATE TABLE `compra` (
-  `idcompra` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `compra` (
+  `idcompra` int(11) NOT NULL AUTO_INCREMENT,
   `iddato_usuario` int(11) NOT NULL,
   `idproducto` int(11) NOT NULL,
   `costo` decimal(10,2) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `fecha` datetime NOT NULL COMMENT 'Almacena la fecha y hora en que se registro la compra',
-  PRIMARY KEY  (`idcompra`),
+  PRIMARY KEY (`idcompra`),
   KEY `fk_producto` (`idproducto`),
   KEY `fk_usuario` (`iddato_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Almacena las compras que ha realizado el cliente' AUTO_INCREMENT=1 ;
-
---
--- Volcar la base de datos para la tabla `compra`
---
-
 
 -- --------------------------------------------------------
 
@@ -74,21 +70,15 @@ CREATE TABLE `compra` (
 -- Estructura de tabla para la tabla `dato_usuario`
 --
 
-CREATE TABLE `dato_usuario` (
-  `iddato_usuario` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `dato_usuario` (
+  `iddato_usuario` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `apellido` varchar(45) NOT NULL,
   `direccion` varchar(100) NOT NULL,
   `telefono` char(10) NOT NULL,
   `email` varchar(75) NOT NULL,
-  `fecha_nacimiento` date NOT NULL,
-  PRIMARY KEY  (`iddato_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Volcar la base de datos para la tabla `dato_usuario`
---
-
+  PRIMARY KEY (`iddato_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -96,14 +86,14 @@ CREATE TABLE `dato_usuario` (
 -- Estructura de tabla para la tabla `marca`
 --
 
-CREATE TABLE `marca` (
-  `idmarca` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `marca` (
+  `idmarca` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(45) NOT NULL,
-  PRIMARY KEY  (`idmarca`)
+  PRIMARY KEY (`idmarca`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registra la marca que pertenece cada producto vendido en la ' AUTO_INCREMENT=11 ;
 
 --
--- Volcar la base de datos para la tabla `marca`
+-- Volcado de datos para la tabla `marca`
 --
 
 INSERT INTO `marca` (`idmarca`, `descripcion`) VALUES
@@ -124,8 +114,8 @@ INSERT INTO `marca` (`idmarca`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `producto`
 --
 
-CREATE TABLE `producto` (
-  `idproducto` int(11) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `producto` (
+  `idproducto` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(50) NOT NULL COMMENT 'Titulo corto mostrado en la pagina web',
   `descripcion` text NOT NULL COMMENT 'Guarda las caracteristicas del producto',
   `existencias` int(11) NOT NULL,
@@ -133,13 +123,13 @@ CREATE TABLE `producto` (
   `url_image` text COMMENT 'Guarda la direccion donde se aloja la imagen del producto',
   `idmarca` int(11) NOT NULL,
   `idcategoria` int(11) NOT NULL,
-  PRIMARY KEY  (`idproducto`),
+  PRIMARY KEY (`idproducto`),
   KEY `fk_marca` (`idmarca`),
   KEY `fk_categoria` (`idcategoria`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
--- Volcar la base de datos para la tabla `producto`
+-- Volcado de datos para la tabla `producto`
 --
 
 INSERT INTO `producto` (`idproducto`, `titulo`, `descripcion`, `existencias`, `costo`, `url_image`, `idmarca`, `idcategoria`) VALUES
@@ -169,24 +159,19 @@ INSERT INTO `producto` (`idproducto`, `titulo`, `descripcion`, `existencias`, `c
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE IF NOT EXISTS `usuario` (
   `user` varchar(25) NOT NULL,
   `pass` varchar(45) NOT NULL,
   `tipo` int(11) NOT NULL COMMENT '0=Administrador; 1=Cliente',
   `estado` int(11) NOT NULL COMMENT '0=Inactivo; 1=Activo',
   `iddato_usuario` int(11) NOT NULL,
-  PRIMARY KEY  (`iddato_usuario`),
+  PRIMARY KEY (`iddato_usuario`),
   UNIQUE KEY `user_UNIQUE` (`user`),
   KEY `fk_dato_usuario` (`iddato_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcar la base de datos para la tabla `usuario`
---
-
-
---
--- Filtros para las tablas descargadas (dump)
+-- Restricciones para tablas volcadas
 --
 
 --
@@ -208,3 +193,7 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `usuario`
   ADD CONSTRAINT `fk_dato_usuario` FOREIGN KEY (`iddato_usuario`) REFERENCES `dato_usuario` (`iddato_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

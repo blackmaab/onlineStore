@@ -6,52 +6,94 @@ $(document).ready(function(){
         return $.validarTecla(event,'.txtCantidad','numero');
     });
     
-//    $('#btnDetalleCarrito').click(function (e) {
-//        
-//                var unique_id =$.gritter.add({
-//                    // (string | mandatory) the heading of the notification
-//                    title: 'Agregado al carrito',
-//                    // (string | mandatory) the text inside the notification
-//                    text: 'Adaptador de Audio 3-D <br />Marca: Manhattan<br /> Cantidad: '+$('#txtCantidad').attr('value'),
-//                    // (string | optional) the image to display on the left
-//                    image: 'images/accesorios/adaptadorAudio.jpg',
-//                    // (bool | optional) if you want it to fade out on its own or just sit there
-//                    sticky: true,
-//                    // (int | optional) the time you want it to be alive for before fading out
-//                    time: '',
-//                    // (string | optional) the class name you want to apply to that specific message
-//                    class_name: 'my-sticky-class'
-//                });
-//                
-//                setTimeout(function(){
-//                    $.gritter.remove(unique_id, {
-//                        fade: true,
-//                        speed: 'slow'
-//                    });
-//        
-//                }, 6000)
-//        return false;
-//    });
+    $('#btnDetalleCarrito').click(function () {
+        if(!$('#cellTotal').html()=="$ 00.00"){
+            $('#divCarrito').modal({
+                minHeight: 100,
+                minWidth: 1000,
+                maxHeight: 500,
+                maxWidth: 2000
+            });
+        }else{
+            $.mensajeInformativo("No se han agregado articulos al carrito", "i");
+        }
+        return false;
+    });
     
+    $('#btnFacturar').click(function(){
+        //verificacion si esta logeado
+        $.post('modules/procedures/usuario.procedure.php',
+        {            
+            txtType:"verificar"
+        },
+        function(data){ 
+            
+            if(data=="true"){
+                alert("autenticado");
+            
+            //                $.mensajeInformativo('Categoria agregada exitosamente','i');				
+            //                $.limpiarCampos("#frmCategoria");  
+            //                cargarComboCategoria("#selCategoria", "-");
+            }else{                    
+                $.mensajeInformativo('Para poder realizar su factura debe de iniciar sesion.','e');					
+            }							
+        }
+        );
+        
+    });
+    
+    $('#btnSession').click(function(){
+        $('#divLogin').modal({
+            minHeight: 100,
+            minWidth: 100,
+            maxHeight: 200,
+            maxWidth: 200
+        });
+          
+          
+    //        //verificacion si esta logeado
+    //        $.post('modules/procedures/usuario.procedure.php',
+    //        {            
+    //            txtType:"autenticar"
+    //        },
+    //        function(data){ 
+    ////            alert(data);
+    ////            if(data=="true"){
+    ////                alert("autenticado");
+    ////            
+    ////            //                $.mensajeInformativo('Categoria agregada exitosamente','i');				
+    ////            //                $.limpiarCampos("#frmCategoria");  
+    ////            //                cargarComboCategoria("#selCategoria", "-");
+    ////            }else{                    
+    ////                $.mensajeInformativo('Para poder realizar su factura debe de iniciar sesion.','e');					
+    ////            }							
+    //        }
+    //        );
+        
+    });
     
     $("#btnLogin").click(function(){
         //verificacion que los campos esten llenos
         if($.validarCampos("#frmLogin")==true){
-            var user=$("#txtUsuario").attr("value");
-            var password=$("#txtPassword").attr("value");
-            
-            if(user==password){
-                if(user=="admin"){
-                    $.mensajeInformativo('Bienvenido Administrador','loginAdmin');
-                }else if(user=="empresa"){
-                    $.mensajeInformativo('Bienvenida Empresa','loginEmpresa');
-                
-                }else{
-                    $.mensajeInformativo('Bienvenido Usuario','loginUser');
+            $.post('modules/procedures/usuario.procedure.php',
+            {            
+                txtType:"autenticar",
+                txtUser:$('#txtUser').attr("value"),
+                txtPass:$('#txtPassword').attr("value")
+            },
+            function(data){ 
+                //            alert(data);
+                //            if(data=="true"){
+                //                alert("autenticado");
+                //            
+                //            //                $.mensajeInformativo('Categoria agregada exitosamente','i');				
+                //            //                $.limpiarCampos("#frmCategoria");  
+                //            //                cargarComboCategoria("#selCategoria", "-");
+                //            }else{                    
+                //                $.mensajeInformativo('Para poder realizar su factura debe de iniciar sesion.','e');					
+                //            }							
                 }
-            }else{
-                $.mensajeInformativo('Usuario y Contraseña incorrectos','e');
-            }
+                );
         }else{
             $.mensajeInformativo('Faltan campos por llenar','e');
         }    
@@ -125,6 +167,7 @@ function calcularTotalFactura(){
     
     if(calculado==0){
         $('#divCarrito').css("display", "none");
+    //$('.simplemodal-close').trigger('click');
     }
     //asignando valor
     $('#cellTotal').html("$ "+calculado.toFixed(2));

@@ -1,0 +1,4 @@
+	ALUMNOS				CARNE
+--------------------------------	-------
+Mario Alexander Alvarado Bernal 	AB100411
+Heber Mauricio Lara Peña 		LP101211

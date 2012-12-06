@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -20,11 +23,11 @@
         <script src="js/jquery-func.js" type="text/javascript"></script>
         <script src="js/general.js" type="text/javascript"></script>
         <script src="js/jquery.wysiwyg.js" type="text/javascript"></script>
-        
+
 
     </head>
     <body>
-        
+
         <!-- Top -->
         <div id="top">
 
@@ -50,12 +53,7 @@
                 <div id="slider">
                     <div id="slider-holder">
                         <ul>
-                            <li><a href="#"><img src="images/slide1.jpg" alt="" /></a></li>
-                            <li><a href="#"><img src="images/slide2.jpg" alt="" /></a></li>
-                            <li><a href="#"><img src="images/slide1.jpg" alt="" /></a></li>
-                            <li><a href="#"><img src="images/slide2.jpg" alt="" /></a></li>
-                            <li><a href="#"><img src="images/slide1.jpg" alt="" /></a></li>
-                            <li><a href="#"><img src="images/slide2.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slide1.jpg" alt="" /></a></li>                            
                         </ul>
                     </div>
                     <div id="slider-nav">
@@ -89,8 +87,9 @@
                             <strong id="tituloTotalCarrito">$0.00</strong>
                         </span>
                         <span class="left more-links">
-                            <a href="#">Facturar</a>
-                            <a href="#" id="btnDetalleCarrito">Detalle</a>
+                            <a href="#" id="btnFacturar">Facturar</a>
+                            <a href="#" id="btnSession">Iniciar session</a>
+                            <!--<a href="#" id="btnDetalleCarrito">Detalle</a>-->
                         </span>
                     </div>
                 </div>
@@ -107,6 +106,6 @@
             </div>
         </div>
         <!-- End Main -->
-        
+
     </body>
 </html>

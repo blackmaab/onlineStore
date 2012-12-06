@@ -127,11 +127,12 @@ $newProducto = new Producto();
         }
         ?>
 
-
     </div>
     <!-- end tabbed -->
 
-    <div id="divCarrito" style="display: none">
+    <div id="divCarrito" align="center" style="display: none">
+        <h1>Detalle de articulos a comprar</h1>        
+        <br>
         <form name="frmCarrito" id="frmCarrito">
             <table class="ui-widget ui-widget-content">
                 <thead>
@@ -152,14 +153,93 @@ $newProducto = new Producto();
                 <tfoot id="tableCarritoFoot">
                     <tr id='rowFoot'>
                         <td colspan='6' align='left' style="font-size: 14px;color: #cd0a0a;font-weight: bold;">Total a pagar</td>
-                        <td id='cellTotal' style="font-size: 14px;color: #cd0a0a;font-weight: bold;"><td>
+                        <td id='cellTotal' style="font-size: 14px;color: #cd0a0a;font-weight: bold;">$ 00.00</td>
                     </tr>
                 </tfoot>
             </table>
         </form>
+        
+        
     </div>
 
 
+    <div id="divLogin" style="display: none">
+        <h1>Iniciar Session</h1>
+        <form name="frmLogin" id="frmLogin">
+            <table>
+                <tr>
+                    <td>Usuario:</td>
+                    <td>
+                        <input type="text" name="txtUser" id="txUser" alt="*" title="Campo Requerido">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contrase&ntilde;a:</td>
+                    <td><input type="password" name="txtPassword" id="txtPassword" alt="*" title="Campo Requerido"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" name="btnLogin" id="btnLogin" value="Acceder">                    
+                    </td> 
+                </tr>
+            </table>
+        </form>
+        <br>
+        <hr>
+        <br>
+        <h1>Si eres nuevo registrate</h1>
+        <form name="frmRegistrar" id="frmRegistrar">
+            <table>
+                <tr>
+                    <td>Nombre:</td>
+                    <td>
+                        <input type="txtNombre" id="txtNombre">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Apellido:</td>
+                    <td>
+                        <input type="txtApellido" id="txtApellido">
+                    </td>
+                </tr>    
+                <tr>
+                    <td>Direccion:</td>
+                    <td>
+                        <textarea name="txtDireccion" id="txtDireccion"></textarea>
+                    </td>                        
+                </tr>   
+                <tr>
+                    <td>Telefono:</td>
+                    <td>
+                        <input id="txtTelefono" name="txtTelefono">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input type="text" id="txtEmail" name="txtEmail">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Usuario:</td>
+                    <td>
+                        <input type="text" name="txtUserNew" id="txtUserNew">
+                    </td>
+                </tr>    
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        <input type="password" name="txtPassNew" id="txtPassNew">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" name="btnRegistrar" id="btnRegistrar" value="Registrar">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
     <!-- Brands -->
     <div class="brands">
         <h3>Marcas</h3>
